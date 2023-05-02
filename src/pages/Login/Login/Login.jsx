@@ -1,9 +1,11 @@
 import React from 'react';
 import { Link } from 'react-router-dom';
+import { FcGoogle } from 'react-icons/fc';
+import { FaGithub } from 'react-icons/fa';
 
 const Login = () => {
     return (
-        <div className="hero min-h-screen bg-base-200">
+        <div className="hero min-h-screen bg-base-200 ">
             <div className="hero-content flex-col ">
                 <div className="text-center mb-5">
                     <h1 className="text-5xl font-bold">Login <span className='text-[#E6272C]'> Here!</span></h1>
@@ -29,6 +31,14 @@ const Login = () => {
                             <button className="btn bg-red-600 hover:bg-red-500 border-none">Login</button>
                         </div>
                         <p><small>Don't Have an Account? <Link className='link link-error' to='/register'>Create Account</Link></small></p>
+                        <h2 className=' text-center d-inline'><hr />OR <hr /></h2>
+                        <div className="form-control mt-2">
+                            
+                            <button className="btn btn-outline btn-primary"><FcGoogle className='text-xl me-2'/>Continue With Google</button>
+                        </div>
+                        <div className="form-control mt-2">
+                            <button className="btn btn-outline"><FaGithub className='text-xl me-2'/>Continue With Github</button>
+                        </div>
                     </div>
                 </div>
             </div>

@@ -40,7 +40,7 @@ const Register = () => {
                                 <button className="btn bg-red-600 hover:bg-red-500 border-none">Register</button>
                             </div>
                             <label className='label'>
-                                <span><small>Already Have an Account? <Link className='link link-error' to='/register'>Login Here</Link></small></span>
+                                <span><small>Already Have an Account? <Link className='link link-error' to='/login'>Login Here</Link></small></span>
                             </label>
                         </div>
                     </div>
