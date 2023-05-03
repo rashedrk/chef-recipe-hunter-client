@@ -6,7 +6,7 @@ import { AuthContext } from '../../../Providers/AuthProvider/AuthProvider';
 
 const Login = () => {
     //receive authInfo form AuthProvider and destructuring
-    const { signIn } = useContext(AuthContext);
+    const { signIn, signInWithGoogle } = useContext(AuthContext);
     
     //handle form submit by login button click
     const handleLogin = event => {
@@ -21,6 +21,15 @@ const Login = () => {
             const loggedUser = result.user;
             console.log('loggin user', loggedUser);
         })
+    }
+
+    //handle google login 
+    const handleGoogleLogin = () => {
+        signInWithGoogle()
+        .then(result => {
+            console.log('google user', result.user);
+        })
+        .catch(err => console.log(err))
     }
     return (
         <div className="hero min-h-screen bg-base-200 ">
@@ -52,7 +61,7 @@ const Login = () => {
                         <h2 className=' text-center d-inline'><hr />OR <hr /></h2>
                         <div className="form-control mt-2">
 
-                            <button className="btn btn-outline btn-primary"><FcGoogle className='text-xl me-2' />Continue With Google</button>
+                            <button onClick={handleGoogleLogin} className="btn btn-outline btn-primary"><FcGoogle className='text-xl me-2' />Continue With Google</button>
                         </div>
                         <div className="form-control mt-2">
                             <button className="btn btn-outline"><FaGithub className='text-xl me-2' />Continue With Github</button>
