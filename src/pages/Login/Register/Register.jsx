@@ -4,7 +4,7 @@ import { AuthContext } from '../../../Providers/AuthProvider/AuthProvider';
 
 const Register = () => {
     //receive authInfo form AuthProvider and destructuring
-    const {signUp} = useContext(AuthContext);
+    const {signUp,updateUser} = useContext(AuthContext);
 
     //state to show error message
     const [error, setError] = useState('');
@@ -22,6 +22,9 @@ const Register = () => {
         console.log(name,photoUrl,email, password, confirmPassword);
         signUp(email,password)
         .then(result => {
+            //add name and photo url to firebase
+            updateUser(name,photoUrl)
+            .then(() => console.log('profile updated'))
             const loggedUser = result.user;
             console.log(loggedUser);
         })
