@@ -1,8 +1,22 @@
-import React from 'react';
+import React, { useContext } from 'react';
 import { Link } from 'react-router-dom';
+import { AuthContext } from '../../Providers/AuthProvider/AuthProvider';
 
 const Header = () => {
-    const user = { displayName: 'alu vbajui' };
+    const { user,logOut } = useContext(AuthContext);
+
+    //handle logout button click
+    const handleLogOut = () => {
+        logOut()
+        .then(() => {
+            console.log('success full logout');
+        })
+        .catch(err => console.log(err))
+    }
+    {
+        console.log(user?.photoURL);
+    }
+
     return (
         <div className="navbar bg-base-100">
             <div className="navbar-start">
@@ -28,17 +42,20 @@ const Header = () => {
             <div className="navbar-end">
                 {
                     user ?
-                        <div className='tooltip tooltip-bottom' data-tip={user.displayName}>
-                            <div className="btn btn-ghost btn-circle avatar ">
-                                <div className="w-10 rounded-full">
-                                    <img src="https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcSzHQv_th9wq3ivQ1CVk7UZRxhbPq64oQrg5Q&usqp=CAU" />
+                        <>
+                            <div className='tooltip tooltip-bottom' data-tip={user.displayName}>
+                                <div className="btn btn-ghost btn-circle avatar ">
+                                    <div className="w-10 rounded-full">
+                                        <img src={user.photoURL} />
+                                    </div>
+                                    
                                 </div>
                             </div>
-                        </div>
+                            <button onClick={handleLogOut} className='ms-3 btn btn-outline btn-secondary btn-sm'>Log Out</button>
+                        </>
                         :
                         <>
-                            <Link className="btn">Login</Link>
-
+                            <Link className="btn btn-outline btn-secondary btn-sm" to='/login'>Login</Link>
                         </>
                 }
             </div>

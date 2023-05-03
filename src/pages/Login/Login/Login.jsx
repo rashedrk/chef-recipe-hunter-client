@@ -38,6 +38,7 @@ const Login = () => {
             .then(result => {
                 console.log('github sign in user', result.user);
             })
+            .catch(err => console.log(err))
     }
     return (
         <div className="hero min-h-screen bg-base-200 ">
