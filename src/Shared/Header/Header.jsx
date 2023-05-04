@@ -47,7 +47,7 @@ const Header = () => {
                             <div className='tooltip tooltip-bottom' data-tip={user.displayName}>
                                 <div className="btn btn-ghost btn-circle avatar ">
                                     <div className="w-10 rounded-full">
-                                        <img src={user.photoURL} />
+                                        <img src={user.photoURL || 'https://cdn.pixabay.com/photo/2015/10/05/22/37/blank-profile-picture-973460__340.png'} />
                                     </div>
 
                                 </div>

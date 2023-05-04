@@ -2,7 +2,7 @@ import React from 'react';
 
 const Footer = () => {
     return (
-        <footer className="footer p-10 bg-dark-200 text-base-content">
+        <footer className="footer p-10 mt-16 bg-slate-200 text-base-content">
             <div>
                 <a className="normal-case text-xl">Dish<span className='text-[#E6272C]'> Discoveries</span></a>
                 <p>
@@ -11,10 +11,10 @@ const Footer = () => {
             </div>
             <div>
                 <span className="footer-title">Services</span>
-                <a className="link link-hover">Branding</a>
-                <a className="link link-hover">Design</a>
-                <a className="link link-hover">Marketing</a>
-                <a className="link link-hover">Advertisement</a>
+                <a className="link link-hover">Home Delivery</a>
+                <a className="link link-hover">Party</a>
+                <a className="link link-hover">Birthday</a>
+                <a className="link link-hover">Occasion</a>
             </div>
             <div>
                 <span className="footer-title">Company</span>

@@ -1,6 +1,7 @@
 import React, { useEffect, useState } from 'react';
 import Banner from '../Banner/Banner';
 import ChefCard from '../chefCard/chefCard';
+import Testimonial from '../Testimonial/Testimonial';
 
 const Home = () => {
     //state for chef data
@@ -23,7 +24,7 @@ const Home = () => {
                     chefs.map(chef => <ChefCard key={chef.chef_id} chef={chef}></ChefCard>)
                 }
             </div>
-            
+            <Testimonial></Testimonial>
         </div>
     );
 };
