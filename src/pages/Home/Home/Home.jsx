@@ -2,16 +2,24 @@ import React, { useEffect, useState } from 'react';
 import Banner from '../Banner/Banner';
 import ChefCard from '../chefCard/chefCard';
 import Testimonial from '../Testimonial/Testimonial';
+import Recipes from '../Recipes/Recipes';
 
 const Home = () => {
     //state for chef data
     const [chefs, setChefs] = useState([]);
+    const [recipes,setRecipes] = useState([]);
     // loading chef data
     useEffect(() => {
         fetch('http://localhost:3000/chef')
             .then(res => res.json())
             .then(data => setChefs(data))
-    }, [])
+    }, []);
+
+    useEffect(() => {
+        fetch('http://localhost:3000/recipes')
+            .then(res => res.json())
+            .then(data => setRecipes(data))
+    }, []);
     return (
         <div>
             <Banner></Banner>
@@ -22,6 +30,12 @@ const Home = () => {
             <div className='grid md:grid-cols-3  gap-4 grid-cols-1'>
                 {
                     chefs.map(chef => <ChefCard key={chef.chef_id} chef={chef}></ChefCard>)
+                }
+            </div>
+            <h2 className='text-center text-4xl font-bold mt-10'>Recipes</h2>
+            <div className='grid md:grid-cols-3  gap-4 grid-cols-1'>
+                {
+                    recipes.map(recipe => <Recipes key={recipe.chef_id} recipe={recipe}></Recipes>)
                 }
             </div>
             <Testimonial></Testimonial>
