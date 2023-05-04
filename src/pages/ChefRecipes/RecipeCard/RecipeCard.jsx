@@ -5,7 +5,7 @@ import Rating from 'react-rating';
 
 
 const RecipeCard = ({ recipe,handleFav }) => {
-    const { name, ingredients, cooking_method, rating } = recipe;
+    const { img, name, ingredients, cooking_method, rating } = recipe;
     const [disabled,setDisabled] = useState(false);
     const handleFavClick = () => {
         setDisabled(true);
@@ -13,6 +13,9 @@ const RecipeCard = ({ recipe,handleFav }) => {
     }
     return (
         <div className="card w-96 bg-base-100 shadow-xl">
+            <figure className="px-10 pt-10">
+                <img src={img} alt="" className="h-60 rounded-xl" />
+            </figure>
             <div className="card-body">
                 <h2 className="card-title">{name}</h2>
                 <p className='my-3'>Ingredients: {ingredients}</p>
