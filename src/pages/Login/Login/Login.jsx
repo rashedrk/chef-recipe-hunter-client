@@ -1,13 +1,13 @@
-import React, { useContext } from 'react';
+import React, { useContext, useState } from 'react';
 import { Link, useLocation, useNavigate } from 'react-router-dom';
 import { FcGoogle } from 'react-icons/fc';
 import { FaGithub } from 'react-icons/fa';
 import { AuthContext } from '../../../Providers/AuthProvider/AuthProvider';
 
 const Login = () => {
+    const [error, setError] = useState('');
     //receive authInfo form AuthProvider and destructuring
     const { signIn, signInWithGoogle, signInWithGithub } = useContext(AuthContext);
-
     //handle form submit by login button click
     const handleLogin = event => {
         event.preventDefault();
@@ -18,8 +18,16 @@ const Login = () => {
         //sign in user
         signIn(email, password)
             .then(() => {
-                
                 redirect();
+            })
+            .catch((err) => {
+                console.log(err.code);
+                if (err.code === 'auth/wrong-password') {
+                    setError('Email or Password do not match')
+                }
+                if(err.code === 'auth/user-not-found'){
+                    setError('User not found !!!')
+                }
             })
     }
 
@@ -46,9 +54,9 @@ const Login = () => {
     const location = useLocation();
     const from = location.state?.from?.location?.pathname || '/';
     const redirect = () => {
-        navigate(from, {replace : true});
+        navigate(from, { replace: true });
     }
-    
+
     return (
         <div className="hero min-h-screen bg-base-200 ">
             <div className="hero-content flex-col ">
@@ -72,6 +80,9 @@ const Login = () => {
                                 <label className="label">
                                     <a href="#" className="label-text-alt link link-hover">Forgot password?</a>
                                 </label>
+                            </div>
+                            <div className="form-control ms-2 my-2">
+                                <p className='text-sm text-red-600'>{error}</p>
                             </div>
                             <div className="form-control mt-2">
                                 <button className="btn bg-red-600 hover:bg-red-500 border-none">Login</button>

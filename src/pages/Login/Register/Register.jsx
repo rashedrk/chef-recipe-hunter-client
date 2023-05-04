@@ -1,5 +1,5 @@
 import React, { useContext, useState } from 'react';
-import { Link } from 'react-router-dom';
+import { Link, useNavigate } from 'react-router-dom';
 import { AuthContext } from '../../../Providers/AuthProvider/AuthProvider';
 
 const Register = () => {
@@ -8,7 +8,7 @@ const Register = () => {
 
     //state to show error message
     const [error, setError] = useState('');
-
+    const navigate = useNavigate();
     //handle form submit by register button click
     const handleRegister = event => {
         event.preventDefault();
@@ -19,16 +19,27 @@ const Register = () => {
         const password = form.password.value;
         const confirmPassword = form.confirmPassword.value;
 
-        console.log(name,photoUrl,email, password, confirmPassword);
+        if (password !== confirmPassword) {
+            return setError('Password and Confirm Password do not match')
+        }
         signUp(email,password)
-        .then(result => {
+        .then(()=> {
+            setError('')
             //add name and photo url to firebase
             updateUser(name,photoUrl)
-            .then(() => console.log('profile updated'))
-            const loggedUser = result.user;
-            console.log(loggedUser);
+            .then(() => {})
+            navigate('/login')
         })
-        .catch(err => console.log(err))
+        .catch(err => {
+            console.log(err.code);
+            if (err.code === 'auth/email-already-in-use') {
+                setError('User Already Registered please login')
+            }
+            if (err.code === 'auth/weak-password') {
+                setError('Password must be 6 digit or more')
+            }
+
+        })
     }
     return (
         <div>
@@ -43,7 +54,7 @@ const Register = () => {
                                 <label className="label">
                                     <span className="label-text">Name</span>
                                 </label>
-                                <input type="text" name='name' placeholder="Enter Your Name" className="input input-bordered" />
+                                <input type="text" required name='name' placeholder="Enter Your Name" className="input input-bordered" />
                             </div>
                             <div className="form-control">
                                 <label className="label">
@@ -55,19 +66,22 @@ const Register = () => {
                                 <label className="label">
                                     <span className="label-text">Email</span>
                                 </label>
-                                <input type="email" name='email' placeholder="Enter Your Email" className="input input-bordered" />
+                                <input type="email" required name='email' placeholder="Enter Your Email" className="input input-bordered" />
                             </div>
                             <div className="form-control">
                                 <label className="label">
                                     <span className="label-text">Password</span>
                                 </label>
-                                <input type="password" name='password' placeholder="Enter Your Password" className="input input-bordered" />
+                                <input type="password" required name='password' placeholder="Enter Your Password" className="input input-bordered" />
                             </div>
                             <div className="form-control">
                                 <label className="label">
                                     <span className="label-text">Confirm Password</span>
                                 </label>
-                                <input type="password" name='confirmPassword' placeholder="Enter Your Password Again" className="input input-bordered" />
+                                <input type="password" required name='confirmPassword' placeholder="Enter Your Password Again" className="input input-bordered" />
+                            </div>
+                            <div className="form-control ms-2 my-2">
+                                <p className='text-sm text-red-600'>{error}</p>
                             </div>
                             <div className="form-control mt-2">
                                 <button className="btn bg-red-600 hover:bg-red-500 border-none">Register</button>
