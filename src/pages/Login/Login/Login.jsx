@@ -1,5 +1,5 @@
 import React, { useContext } from 'react';
-import { Link } from 'react-router-dom';
+import { Link, useLocation, useNavigate } from 'react-router-dom';
 import { FcGoogle } from 'react-icons/fc';
 import { FaGithub } from 'react-icons/fa';
 import { AuthContext } from '../../../Providers/AuthProvider/AuthProvider';
@@ -17,17 +17,17 @@ const Login = () => {
 
         //sign in user
         signIn(email, password)
-            .then(result => {
-                const loggedUser = result.user;
-                console.log('loggin user', loggedUser);
+            .then(() => {
+                
+                redirect();
             })
     }
 
     //handle google login 
     const handleGoogleLogin = () => {
         signInWithGoogle()
-            .then(result => {
-                console.log('google user', result.user);
+            .then(() => {
+                redirect();
             })
             .catch(err => console.log(err))
     }
@@ -35,11 +35,20 @@ const Login = () => {
     // github login handle 
     const handleGithubLogin = () => {
         signInWithGithub()
-            .then(result => {
-                console.log('github sign in user', result.user);
+            .then(() => {
+                redirect();
             })
             .catch(err => console.log(err))
     }
+
+    // after login go to homepage or redirect to other page 
+    const navigate = useNavigate();
+    const location = useLocation();
+    const from = location.state?.from?.location?.pathname || '/';
+    const redirect = () => {
+        navigate(from, {replace : true});
+    }
+    
     return (
         <div className="hero min-h-screen bg-base-200 ">
             <div className="hero-content flex-col ">
