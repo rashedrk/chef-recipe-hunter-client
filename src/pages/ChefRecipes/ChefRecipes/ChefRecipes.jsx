@@ -9,9 +9,7 @@ import 'react-toastify/dist/ReactToastify.css';
 
 
 const ChefRecipes = () => {
-    const [toast, setToast] = useState([])
-
-    const [recipes, setRecipes] = useState([])
+    const [recipes, setRecipes] = useState([]);
     // get chef data 
     const chefData = useLoaderData();
     const { chef_id,chef_pic, name, bio, years, recipes_no, likes } = chefData;
@@ -23,7 +21,12 @@ const ChefRecipes = () => {
         .then(data => setRecipes(data))
     },[]);
 
-    
+    //toast message show on favorite click
+    const handleFav = (name) => {
+        toast.success(`Successfully added ${name} to favorite list !`, {
+            position: toast.POSITION.TOP_RIGHT
+        });
+    }
     return (
         
         <div>
@@ -44,7 +47,7 @@ const ChefRecipes = () => {
             {/* ---------- Recipe card section ------------ */}
             <div className="grid md:grid-cols-3 gap-2">
             {
-                recipes.map(recipe => <RecipeCard key={recipe.key} recipe={recipe}></RecipeCard>)
+                recipes.map(recipe => <RecipeCard key={recipe.key} recipe={recipe} handleFav={handleFav} ></RecipeCard>)
             }
             <ToastContainer />
             </div>

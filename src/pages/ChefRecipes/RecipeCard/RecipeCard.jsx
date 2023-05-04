@@ -1,14 +1,15 @@
-import React from 'react';
+import React, { useState } from 'react';
 import { AiOutlineHeart } from 'react-icons/ai';
 import { FaRegStar, FaStar } from 'react-icons/fa';
 import Rating from 'react-rating';
 
 
-const RecipeCard = ({ recipe }) => {
+const RecipeCard = ({ recipe,handleFav }) => {
     const { name, ingredients, cooking_method, rating } = recipe;
-    //handle add to favorite click 
-    const handleFav = () => {
-        
+    const [disabled,setDisabled] = useState(false);
+    const handleFavClick = () => {
+        setDisabled(true);
+        handleFav(name);
     }
     return (
         <div className="card w-96 bg-base-100 shadow-xl">
@@ -34,9 +35,9 @@ const RecipeCard = ({ recipe }) => {
                         <span>{rating}</span>
                     </div>
                     <div>
-                        <p onClick={handleFav} className="btn bg-red-600 border-none hover:bg-red-500">
+                        <button onClick={handleFavClick} disabled = {disabled} className="btn bg-red-600 border-none hover:bg-red-500">
                             <AiOutlineHeart className='text-xl'/>
-                        </p>
+                        </button>
                         
                     </div>
                 </div>
