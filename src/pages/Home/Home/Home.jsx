@@ -10,13 +10,13 @@ const Home = () => {
     const [recipes,setRecipes] = useState([]);
     // loading chef data
     useEffect(() => {
-        fetch('http://localhost:3000/chef')
+        fetch('https://chef-recipe-server-rashedrk.vercel.app/chef')
             .then(res => res.json())
             .then(data => setChefs(data))
     }, []);
 
     useEffect(() => {
-        fetch('http://localhost:3000/recipes')
+        fetch('https://chef-recipe-server-rashedrk.vercel.app/recipes')
             .then(res => res.json())
             .then(data => setRecipes(data))
     }, []);
@@ -35,7 +35,7 @@ const Home = () => {
             <h2 className='text-center text-4xl font-bold mt-10'>Recipes</h2>
             <div className='grid md:grid-cols-3  gap-4 grid-cols-1'>
                 {
-                    recipes.map(recipe => <Recipes key={recipe.chef_id} recipe={recipe}></Recipes>)
+                    recipes.map(recipe => <Recipes key={recipe.recipe_id} recipe={recipe}></Recipes>)
                 }
             </div>
             <Testimonial></Testimonial>

@@ -14,9 +14,6 @@ const Header = () => {
             })
             .catch(err => console.log(err))
     }
-    {
-        console.log(user?.photoURL);
-    }
 
     return (
         <div className="navbar bg-base-100">

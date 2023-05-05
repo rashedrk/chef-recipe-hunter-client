@@ -1,12 +1,13 @@
 import React, { useState } from 'react';
 import { AiOutlineHeart } from 'react-icons/ai';
 import { FaRegStar, FaStar } from 'react-icons/fa';
+import { LazyLoadImage } from 'react-lazy-load-image-component';
 import Rating from 'react-rating';
+import PlaceholderImage from '../../../assets/placeholderImg.webp';
 
-
-const RecipeCard = ({ recipe,handleFav }) => {
+const RecipeCard = ({ recipe, handleFav }) => {
     const { img, name, ingredients, cooking_method, rating } = recipe;
-    const [disabled,setDisabled] = useState(false);
+    const [disabled, setDisabled] = useState(false);
     const handleFavClick = () => {
         setDisabled(true);
         handleFav(name);
@@ -14,7 +15,7 @@ const RecipeCard = ({ recipe,handleFav }) => {
     return (
         <div className="card w-96 bg-base-100 shadow-xl">
             <figure className="px-10 pt-10">
-                <img src={img} alt="" className="h-60 rounded-xl" />
+                <LazyLoadImage src={img} placeholderSrc={PlaceholderImage} className="rounded-xl h-60"></LazyLoadImage>
             </figure>
             <div className="card-body">
                 <h2 className="card-title">{name}</h2>
@@ -38,10 +39,10 @@ const RecipeCard = ({ recipe,handleFav }) => {
                         <span>{rating}</span>
                     </div>
                     <div>
-                        <button onClick={handleFavClick} disabled = {disabled} className="btn bg-red-600 border-none hover:bg-red-500">
-                            <AiOutlineHeart className='text-xl'/>
+                        <button onClick={handleFavClick} disabled={disabled} className="btn bg-red-600 border-none hover:bg-red-500">
+                            <AiOutlineHeart className='text-xl' />
                         </button>
-                        
+
                     </div>
                 </div>
 

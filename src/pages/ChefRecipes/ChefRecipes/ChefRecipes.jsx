@@ -12,14 +12,14 @@ const ChefRecipes = () => {
     const [recipes, setRecipes] = useState([]);
     // get chef data 
     const chefData = useLoaderData();
-    const { chef_id,chef_pic, name, bio, years, recipes_no, likes } = chefData;
+    const { chef_id, chef_pic, name, bio, years, recipes_no, likes } = chefData;
 
     // load recipe data 
     useEffect(() => {
-        fetch(`http://localhost:3000/recipes/${chef_id}`)
-        .then(res => res.json())
-        .then(data => setRecipes(data))
-    },[]);
+        fetch(`https://chef-recipe-server-rashedrk.vercel.app/recipes/${chef_id}`)
+            .then(res => res.json())
+            .then(data => setRecipes(data))
+    }, []);
 
     //toast message show on favorite click
     const handleFav = (name) => {
@@ -28,7 +28,7 @@ const ChefRecipes = () => {
         });
     }
     return (
-        
+
         <div>
             {/*-------------- Banner section -------------- */}
             <div className="hero bg-slate-100 py-11 mb-5">
@@ -46,10 +46,10 @@ const ChefRecipes = () => {
 
             {/* ---------- Recipe card section ------------ */}
             <div className="grid md:grid-cols-3 gap-2">
-            {
-                recipes.map(recipe => <RecipeCard key={recipe.key} recipe={recipe} handleFav={handleFav} ></RecipeCard>)
-            }
-            <ToastContainer />
+                {
+                    recipes.map(recipe => <RecipeCard key={recipe.key} recipe={recipe} handleFav={handleFav} ></RecipeCard>)
+                }
+                <ToastContainer />
             </div>
         </div>
     );

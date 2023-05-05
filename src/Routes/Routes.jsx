@@ -7,6 +7,7 @@ import ChefRecipes from "../pages/ChefRecipes/ChefRecipes/ChefRecipes";
 import Error from "../pages/Error/Error";
 import Blog from "../pages/Blog/Blog";
 import PrivateRoute from "./PrivateRoute";
+import AboutUs from "../pages/AboutUs/AboutUs";
 
 const router = createBrowserRouter([
     {
@@ -28,11 +29,15 @@ const router = createBrowserRouter([
             {
                 path: '/chef/:id',
                 element: <PrivateRoute><ChefRecipes></ChefRecipes></PrivateRoute>,
-                loader: ({params}) => fetch(`http://localhost:3000/chef/${params.id}`)
+                loader: ({params}) => fetch(`https://chef-recipe-server-rashedrk.vercel.app/chef/${params.id}`)
             },
             {
                 path: '/blog',
                 element: <Blog></Blog>
+            },
+            {
+                path: '/about',
+                element: <AboutUs></AboutUs>
             },
             {
                 path: '*',
