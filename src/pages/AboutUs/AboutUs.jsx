@@ -1,4 +1,6 @@
 import React from 'react';
+import PlaceholderImage from '../../assets/placeholderImg.webp';
+import { LazyLoadImage } from 'react-lazy-load-image-component';
 
 const AboutUs = () => {
     return (
@@ -14,8 +16,10 @@ const AboutUs = () => {
                     Thank you for choosing DishDiscoveries. We look forward to sharing our passion for food with you!
                 </p>
             </div>
-            <img src="https://radiustheme.com/demo/wordpress/redchili/wp-content/uploads/2017/03/about1-banner2.jpg" alt="" />
-            <img src="https://radiustheme.com/demo/wordpress/redchili/wp-content/uploads/2017/02/left-back-1-600x524.jpg" alt="" />
+            
+            <LazyLoadImage src="https://radiustheme.com/demo/wordpress/redchili/wp-content/uploads/2017/03/about1-banner2.jpg" placeholderSrc={PlaceholderImage}></LazyLoadImage>
+            <LazyLoadImage src="https://radiustheme.com/demo/wordpress/redchili/wp-content/uploads/2017/02/left-back-1-600x524.jpg" placeholderSrc={PlaceholderImage}></LazyLoadImage>
+            
             <div className='p-10'>
                 <h2 className='text-2xl mb-5 font-bold'>Our History</h2>
                 <p><span className='text-xl text-red-600 font-semibold'>1989</span> when we first opened our doors as a small family-owned restaurant. From the beginning, we've been dedicated to creating delicious food with great culture and historic value.

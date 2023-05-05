@@ -7,7 +7,7 @@ import PlaceholderImage from '../../../assets/placeholderImg.webp';
 const Recipes = ({ recipe }) => {
     const { name, rating, img } = recipe;
     return (
-        <div className="card w-96 bg-base-100 shadow-xl">
+        <div className="mt-10 card w-96 bg-base-100 shadow-xl">
             <figure className="px-10 pt-10">
                 <LazyLoadImage src={img} placeholderSrc={PlaceholderImage} className="rounded-xl h-60"></LazyLoadImage>
             </figure>

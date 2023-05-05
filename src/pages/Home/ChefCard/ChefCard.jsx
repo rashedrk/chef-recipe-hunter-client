@@ -8,7 +8,7 @@ import PlaceholderImage from '../../../assets/placeholderImg.webp';
 
 
 const ChefCard = ({ chef }) => {
-    const { chef_id, chef_pic, name, years, recipes, likes } = chef
+    const { chef_id, chef_pic, name, years, recipes_no, likes } = chef
     return (
         <div className="card w-96 bg-base-100 shadow-xl">
             <figure className="px-10  pt-10">
@@ -18,7 +18,7 @@ const ChefCard = ({ chef }) => {
 
                 <h2 className="card-title">{name}</h2>
                 <p className='flex items-center'><BiTimeFive className='text-lg me-1 text-red-400' /> {years} years Experience</p>
-                <p className='flex items-center'><IoFastFoodOutline className='text-lg me-1 text-red-400' />{recipes}+ recipes</p>
+                <p className='flex items-center'><IoFastFoodOutline className='text-lg me-1 text-red-400' />{recipes_no}+ recipes</p>
                 <p className='flex items-center'><AiTwotoneLike className='text-lg me-1 text-red-500' /> {likes}</p>
 
 
