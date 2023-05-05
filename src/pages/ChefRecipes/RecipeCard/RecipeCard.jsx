@@ -19,7 +19,8 @@ const RecipeCard = ({ recipe, handleFav }) => {
             </figure>
             <div className="card-body">
                 <h2 className="card-title">{name}</h2>
-                <p className='my-3'>Ingredients: {ingredients}</p>
+                <p className='my-3 font-semibold'>Ingredients: {ingredients}</p>
+                <p className='font-semibold'>Cooking Methods</p>
                 <ul className='ps-5'>
                     {
                         cooking_method.map(method => <li className='list-decimal'>{method}</li>)
